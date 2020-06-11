@@ -7,6 +7,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Company.delete_all
+
 company = Company.create([{ name: 'Mickeys Plaice', details: 'Fish Shop' }])
 Employee.create(forename: 'Goofy', middlename: 'foo', surname: 'Cartoon', company: company.first)
 Employee.create(forename: 'Minnie', middlename: 'foo', surname: 'Mouse', company: company.first)

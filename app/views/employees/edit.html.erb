@@ -1,6 +1,6 @@
 <h2 class="pb-2">Edit Employee</h2>
 
-<%= form_with(model: @employees, url: :company_employee ,method: :put, local: true) do |form| %>
+<%= form_with(model: [@company, @employee], url: :company_employee ,method: :put, local: true) do |form| %>
 
 <% if @employee.errors.any? %>
   <div id="error_explanation">

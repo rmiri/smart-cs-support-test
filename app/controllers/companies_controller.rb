@@ -8,8 +8,11 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find(permitted_params[:id])
-    @company = Company.first
+    # This was causing the bug #1
+    # @company = Company.first
   end
+
+  def edit; end
 
   def new
     @company = Company.new

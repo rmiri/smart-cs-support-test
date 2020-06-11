@@ -14,7 +14,11 @@ class EmployeesController < ApplicationController
     @employee = @company.employees.build
   end
 
-  def edit; end
+  def edit
+    byebug
+    @employee = Employee.find(permitted_params[:id])
+    @employee.update(permitted_params)
+  end
 
   def create
     @employee = @company.employees.build(permitted_params[:employee])
