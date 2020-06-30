@@ -2746,3 +2746,206 @@ Did you mean?  details
                details?):
   
 app/controllers/companies_controller.rb:24:in `create'
+Started GET "/" for 127.0.0.1 at 2020-06-30 11:27:59 +0100
+  [1m[35m (6.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 8.2ms | Allocations: 452)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 10290ms (Views: 10251.2ms | ActiveRecord: 0.0ms | Allocations: 112669)
+
+
+Started GET "/companies" for 127.0.0.1 at 2020-06-30 11:28:40 +0100
+Processing by CompaniesController#index as HTML
+  Rendering companies/index.html.erb within layouts/application
+  [1m[36mCompany Load (0.7ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  ↳ app/views/companies/index.html.erb:15
+  Rendered companies/index.html.erb within layouts/application (Duration: 40.5ms | Allocations: 4661)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 130ms (Views: 101.9ms | ActiveRecord: 2.1ms | Allocations: 14302)
+
+
+Started GET "/companies/11" for 127.0.0.1 at 2020-06-30 11:28:56 +0100
+Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mCompany Load (0.5ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:10:in `show'
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mEmployee Load (1.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."company_id" = ?[0m  [["company_id", 11]]
+  ↳ app/views/companies/show.html.erb:16
+  Rendered companies/show.html.erb within layouts/application (Duration: 255.8ms | Allocations: 6799)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 357ms (Views: 331.0ms | ActiveRecord: 2.1ms | Allocations: 15776)
+
+
+Started GET "/companies/11/employees/new" for 127.0.0.1 at 2020-06-30 11:28:58 +0100
+Processing by EmployeesController#new as HTML
+  Parameters: {"company_id"=>"11"}
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:57:in `find_company'
+  Rendering employees/new.html.erb within layouts/application
+  Rendered employees/new.html.erb within layouts/application (Duration: 130.4ms | Allocations: 4653)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 398ms (Views: 321.5ms | ActiveRecord: 0.8ms | Allocations: 18218)
+
+
+Started POST "/companies/11/employees" for 127.0.0.1 at 2020-06-30 11:29:04 +0100
+Processing by EmployeesController#create as HTML
+  Parameters: {"authenticity_token"=>"IcuKDhEz6kY8ofv1dDlutsSzef2okGLD6oLPEqUzOUZixXGoz9xjKcF6cAfFy3xVp5iX+dZBGWYNUMs2D0lESw==", "employee"=>{"forename"=>"Renata", "middlename"=>"", "surname"=>"Miriuk"}, "company_id"=>"11"}
+  [1m[36mCompany Load (1.5ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:57:in `find_company'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees_controller.rb:25:in `create'
+  [1m[36mEmployee Create (13.9ms)[0m  [1m[32mINSERT INTO "employees" ("forename", "surname", "created_at", "updated_at", "company_id", "middlename") VALUES (?, ?, ?, ?, ?, ?)[0m  [["forename", "Renata"], ["surname", "Miriuk"], ["created_at", "2020-06-30 10:29:04.456511"], ["updated_at", "2020-06-30 10:29:04.456511"], ["company_id", 11], ["middlename", ""]]
+  ↳ app/controllers/employees_controller.rb:25:in `create'
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees_controller.rb:25:in `create'
+Redirected to http://127.0.0.1:3000/companies/11/employees
+Completed 302 Found in 39ms (ActiveRecord: 21.2ms | Allocations: 3646)
+
+
+Started GET "/companies/11/employees" for 127.0.0.1 at 2020-06-30 11:29:04 +0100
+Processing by EmployeesController#index as HTML
+  Parameters: {"company_id"=>"11"}
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:57:in `find_company'
+  Rendering employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."company_id" = ?[0m  [["company_id", 11]]
+  ↳ app/views/employees/index.html.erb:15
+  Rendered employees/index.html.erb within layouts/application (Duration: 100.0ms | Allocations: 4404)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 158ms (Views: 146.4ms | ActiveRecord: 0.5ms | Allocations: 12822)
+
+
+Started GET "/companies/11/employees/16/edit" for 127.0.0.1 at 2020-06-30 11:29:07 +0100
+Processing by EmployeesController#edit as HTML
+  Parameters: {"company_id"=>"11", "id"=>"16"}
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:57:in `find_company'
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:49:in `set_employee'
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:19:in `edit'
+Started GET "/companies/11/employees/16/edit" for 127.0.0.1 at 2020-06-30 11:31:20 +0100
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Completed 500 Internal Server Error in 132826ms (ActiveRecord: 0.6ms | Allocations: 65726)
+
+
+Processing by EmployeesController#edit as HTML
+  Parameters: {"company_id"=>"11", "id"=>"16"}
+  [1m[36mCompany Load (2.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:57:in `find_company'
+  [1m[36mEmployee Load (0.5ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:49:in `set_employee'
+  [1m[36mCACHE Employee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:19:in `edit'
+Completed 500 Internal Server Error in 1654ms (ActiveRecord: 2.8ms | Allocations: 4752)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'controller' for Employee.):
+  
+app/controllers/employees_controller.rb:20:in `edit'
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'controller' for Employee.):
+  
+app/controllers/employees_controller.rb:20:in `edit'
+Started GET "/companies/11/employees" for 127.0.0.1 at 2020-06-30 11:31:28 +0100
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by EmployeesController#index as HTML
+  Parameters: {"company_id"=>"11"}
+  [1m[36mCompany Load (2.4ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:57:in `find_company'
+  Rendering employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (0.4ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."company_id" = ?[0m  [["company_id", 11]]
+  ↳ app/views/employees/index.html.erb:15
+  Rendered employees/index.html.erb within layouts/application (Duration: 114.0ms | Allocations: 5569)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 428ms (Views: 195.1ms | ActiveRecord: 20.9ms | Allocations: 19025)
+
+
+Started GET "/companies/11/employees/16/edit" for 127.0.0.1 at 2020-06-30 11:31:31 +0100
+Processing by EmployeesController#edit as HTML
+  Parameters: {"company_id"=>"11", "id"=>"16"}
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:57:in `find_company'
+  [1m[36mEmployee Load (0.7ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:49:in `set_employee'
+  [1m[36mCACHE Employee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:19:in `edit'
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.1ms | Allocations: 2491)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'controller' for Employee.):
+  
+app/controllers/employees_controller.rb:20:in `edit'
+Started GET "/companies/11/employees" for 127.0.0.1 at 2020-06-30 11:32:50 +0100
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by EmployeesController#index as HTML
+  Parameters: {"company_id"=>"11"}
+  [1m[36mCompany Load (0.4ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:57:in `find_company'
+  Rendering employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (1.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."company_id" = ?[0m  [["company_id", 11]]
+  ↳ app/views/employees/index.html.erb:15
+  Rendered employees/index.html.erb within layouts/application (Duration: 108.6ms | Allocations: 5563)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 402ms (Views: 210.6ms | ActiveRecord: 8.0ms | Allocations: 18873)
+
+
+Started GET "/companies/11/employees/16/edit" for 127.0.0.1 at 2020-06-30 11:32:52 +0100
+Processing by EmployeesController#edit as HTML
+  Parameters: {"company_id"=>"11", "id"=>"16"}
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:57:in `find_company'
+  [1m[36mEmployee Load (1.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:49:in `set_employee'
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:19:in `edit'
+  Rendering employees/edit.html.erb within layouts/application
+  Rendered employees/edit.html.erb within layouts/application (Duration: 139.8ms | Allocations: 971)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 226ms (Views: 216.7ms | ActiveRecord: 1.4ms | Allocations: 10490)
+
+
+Started PUT "/companies/11/employees/16" for 127.0.0.1 at 2020-06-30 11:32:57 +0100
+Processing by EmployeesController#update as HTML
+  Parameters: {"authenticity_token"=>"Qv+jAWmr8DY30iexK1okkdLwdBtoSFfKN+YKOD7De1YTh3DM0F18Jqa1NPonLc736iHwNUY6yZ2ZIBhpiADYAQ==", "employee"=>{"forename"=>"Renata 2", "surname"=>"Miriuk"}, "company_id"=>"11", "id"=>"16"}
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:57:in `find_company'
+  [1m[36mEmployee Load (0.4ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:49:in `set_employee'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees_controller.rb:33:in `update'
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:33:in `update'
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/employees_controller.rb:33:in `update'
+  Rendering employees/edit.html.erb within layouts/application
+  Rendered employees/edit.html.erb within layouts/application (Duration: 5.1ms | Allocations: 908)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 209ms (Views: 178.7ms | ActiveRecord: 1.2ms | Allocations: 14021)
+
+
+Started PUT "/companies/11/employees/16" for 127.0.0.1 at 2020-06-30 11:35:03 +0100
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by EmployeesController#update as HTML
+  Parameters: {"authenticity_token"=>"DfhQx7uKXpQTE78Iid4TzNcIy9nrXc2sEGbX8+TZ6Ud19voenwUX9olnWlhTZKJvFhr91fKk+wCGRte6WaXhEA==", "employee"=>{"forename"=>"renata", "surname"=>"Miriuk"}, "company_id"=>"11", "id"=>"16"}
+  [1m[36mCompany Load (4.0ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:58:in `find_company'
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:50:in `set_employee'
+  [1m[35m (4.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees_controller.rb:34:in `update'
+  [1m[36mCompany Load (1.4ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:34:in `update'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/employees_controller.rb:34:in `update'
+  Rendering employees/edit.html.erb within layouts/application
+  Rendered employees/edit.html.erb within layouts/application (Duration: 35.4ms | Allocations: 905)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 8942892ms (Views: 464.6ms | ActiveRecord: 17.4ms | Allocations: 39468)
+
+

@@ -15,9 +15,9 @@ class EmployeesController < ApplicationController
   end
 
   def edit
-    byebug
+    # byebug
     @employee = Employee.find(permitted_params[:id])
-    @employee.update(permitted_params)
+    # @employee.update(permitted_params)
   end
 
   def create
@@ -30,9 +30,11 @@ class EmployeesController < ApplicationController
   end
 
   def update
+    byebug
+    @emp = Employee.find(permitted_params[:id])
     if @employee.update(forename: permitted_params[:forename],
                         surname: permitted_params[:surname])
-      redirect_to company_employees_path(@company)
+      redirect_to company_employees_path(company_id:@company.id, id: @employee.id)
     else
       render 'edit'
     end
